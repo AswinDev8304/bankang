@@ -1,0 +1,19 @@
+<h1 class="text-primary">{{data}}</h1>
+
+<div class="text-center row">
+    <div class="container text-center bg-light border bg-dark col-5 mt-5 ms- ">
+        <h1 class="text-white mt-2 mb-2">ABC Bank(Login)</h1>
+        
+    
+        <form action="">
+            <input id="" (change)="accnoChange($event)" type="text" [placeholder]="pdata" class="form-control mt-2  p-2 ">
+            <input #psw id="" type="password" placeholder="Enter Password" class="form-control mt-2 p-2">
+            <button (click)="login(psw)" type="submit"  class="btn btn-light w-50 p-2 mt-4 mb-3">Login</button><br>
+            <p style="color: white;">Don't have an account ? <a routerLink="register" style="text-decoration: none;color: bisque;">Create Account</a> </p>   
+        </form>
+    
+    </div>
+    <div class="col-6 mt-5">
+        <img class="" style="width: 550px; border-radius: 50px;" src="https://i.postimg.cc/GtTxt7q7/bank-building.webp" alt="">
+    </div>
+</div>
