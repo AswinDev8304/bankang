@@ -3,11 +3,11 @@
         
     
         <form action="">
-            <input id="" type="text" placeholder="Enter ACC No" class="form-control mt-2  p-2 ">
-            <input id="" type="text" placeholder="Enter Username" class="form-control mt-2 p-2">
-            <input id="" type="password" placeholder="Enter Password" class="form-control mt-2 p-2">
-            <input id="" type="password" placeholder="Confirm Password" class="form-control mt-2 p-2">
-            <button type="submit" class="btn btn-light w-50 p-2 mt-4 mb-3">Signup</button><br>
+            <input [(ngModel)]="acno" id="u1" name="acno" type="text" placeholder="Enter ACC No" class="form-control mt-2  p-2 ">
+            <input [(ngModel)]="uname" id="u2" name="uname" type="text" placeholder="Enter Username" class="form-control mt-2 p-2">
+            <input [(ngModel)]="psw"  id="p1" name="password" type="password" placeholder="Enter Password" class="form-control mt-2 p-2">
+            <input [(ngModel)]="cpsw"  id="p2" name="cpassword" type="password" placeholder="Confirm Password" class="form-control mt-2 p-2">
+            <button (click)="signup()" type="submit" class="btn btn-light w-50 p-2 mt-4 mb-3">Signup</button><br>
                
         </form>
     
