@@ -6,9 +6,9 @@
         
     
         <form action="">
-            <input id="" (change)="accnoChange($event)" type="text" [placeholder]="pdata" class="form-control mt-2  p-2 ">
-            <input #psw id="" type="password" placeholder="Enter Password" class="form-control mt-2 p-2">
-            <button (click)="login(psw)" type="submit"  class="btn btn-light w-50 p-2 mt-4 mb-3">Login</button><br>
+            <input [(ngModel)]="acno" id="u1"  type="text" name="uname" placeholder="Enter acc no" class="form-control mt-2  p-2 ">
+            <input [(ngModel)]="psw" id="p1" type="password" name="password" placeholder="Enter Password" class="form-control mt-2 p-2">
+            <button (click)="login()" type="submit"  class="btn btn-light w-50 p-2 mt-4 mb-3">Login</button><br>
             <p style="color: white;">Don't have an account ? <a routerLink="register" style="text-decoration: none;color: bisque;">Create Account</a> </p>   
         </form>
     
