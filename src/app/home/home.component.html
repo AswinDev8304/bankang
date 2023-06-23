@@ -1,20 +1,100 @@
 <div class="row">
     <div class="col-6 mt-5">
         <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button"><i class="fa-solid fa-circle-info"></i> Account Details</button>
-            <button class="btn btn-primary" type="button"><i class="fa-solid fa-person-walking-arrow-right"></i> Logout</button>
-            <button class="btn btn-primary" type="button"><i class="fa-solid fa-indian-rupee-sign"></i> Check Balance</button>
-            <button class="btn btn-primary" type="button"><i class="fa-regular fa-user"></i> View Profile</button>
-            <button class="btn btn-primary" type="button"><i class="fa-solid fa-money-bill-transfer"></i> Transfer Money</button>
-            <button class="btn btn-primary" type="button"><i class="fa-solid fa-trash"></i> Delete Account</button>
-          </div>
+            <a href="/transaction" class="btn btn-primary" type="button"><i class="fa-solid fa-circle-info"></i> Account
+                Details</a>
+            <button (click)="logout()" class="btn btn-primary" type="button"><i class="fa-solid fa-person-walking-arrow-right"></i>
+                Logout</button>
+            <button (click)="checkBalance()" class="btn btn-primary" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"
+                data-bs-toggle="offcanvas" type="button" ><i class="fa-solid fa-indian-rupee-sign"></i> Check
+                Balance</button>
+            <button (click)="acessUser()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"><i
+                    class="fa-regular fa-user" ></i> View Profile</button>
+            <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal1" type="button"><i class="fa-solid fa-money-bill-transfer"></i> Transfer
+                Money</button>
+            <button (click)="deleteAC()" class="btn btn-primary" type="button"><i class="fa-solid fa-trash"></i> Delete Account</button>
+        </div>
     </div>
-    <div class="col-6 text-center p-4" >
-        <h1 class="text-primary">Netbanking with <span class="text-warning">SBI</span></h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae aperiam excepturi, enim modi illo
+    <div class="col-6 text-center p-4">
+        <h2 class="text-warning">Welcome {{uname}} !</h2>
+        
+        <h1 class="text-primary">Enjoy Netbanking with <span class="text-warning">SBI</span></h1>
+        <br>
+        <app-delete [item]="acno1" (onCancel)="cancelChild()" (onDelete)="deleteAccount($event)"></app-delete>
+        <p [ngClass]="acno1?'s':''">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae aperiam excepturi, enim modi illo
             exercitationem omnis facere nisi expedita natus officia temporibus officiis eveniet atque? Nam doloremque
             aspernatur assumenda cumque!</p>
-            <img class="w-100 mt-5 p-5" src="https://i.postimg.cc/d3CffPhv/360-F-61062796-NF87-GPn-WV0f-Q2-Lho-YNlyjev0-Poc-Rw-Zj9.jpg" alt="">
+        <img class="w-100 mt-5 p-5"
+            src="https://i.postimg.cc/d3CffPhv/360-F-61062796-NF87-GPn-WV0f-Q2-Lho-YNlyjev0-Poc-Rw-Zj9.jpg" alt="">
     </div>
 
 </div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+            <div class="modal-body text-center" style="background-color: rgb(23, 131, 209);">
+                <img class="w-50" src="https://i.postimg.cc/Kv8HSxwC/icon-5359553-1280.webp" alt="">
+            </div>
+            <div class="p-5">
+                <h4>User Name : {{userData.uname}}</h4><br>
+                <hr>
+                <h4 class="mt-5 mb-2">Account Number : {{acno}}</h4>
+                <hr class="mt-2">
+                <div class="text-center"><button type="button" class="btn btn-primary w-100"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title text-warning text-center" id="offcanvasExampleLabel">Balance Enquiry</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <img class="w-75 h-50 text-center" src="https://i.postimg.cc/rwprGFzy/png-transparent-gold-coin-money-coins-gold-material-coins-thumbnail-removebg-preview.png" alt="">
+      <h3 class=" mt-2 text-primary">Account Number : {{acno}}</h3>
+      <h3 class="text-primary">Current Balance : {{balance}}</h3>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+        <div class="modal-body" style="background-color:rgb(85, 85, 255)">
+          <form [formGroup]="transaction" class="p-3 text-center" action="">
+            <h1 class="text-white"> Money Transfer</h1>
+            <input formControlName="acno" class="border border-2 mt-2 form-control" type="text" placeholder="Recieptant acc no">
+            <div *ngIf="transaction.get('acno')?.errors &&transaction.get('acno')?.touched">
+              <p class="text-white">please include numbers only</p>
+          </div>
+            <input formControlName="amnt" class="border border-2 mt-2 form-control"  type="text" placeholder="Amount to send">
+            <div *ngIf="transaction.get('amnt')?.errors &&transaction.get('amnt')?.touched">
+              <p class="text-white">please include numbers only</p>
+          </div>
+            <input formControlName="psw" class="border border-2 mt-2 form-control" type="password"placeholder="Password">
+            <div *ngIf="transaction.get('psw')?.errors &&transaction.get('psw')?.touched">
+              <p class="text-white">please include numbers and characters only</p>
+          </div>
+            <button (click)="moneytransfer()" class="mt-5 p-2 w-100 btn btn-light">Transfer</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p [ngClass]="alertColor?'s1':'s2'" class="text-center">{{alertMessage}}</p>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  

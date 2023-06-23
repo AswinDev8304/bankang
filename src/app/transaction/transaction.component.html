@@ -1,0 +1,42 @@
+<h1 style="text-decoration: underline;" class="text-center">Transaction Details :</h1>
+<h3 class='text-center text-warning mt-3'>({{date | date : 'fullDate'}})</h3>
+<div class="p-5 container">
+  <div class="text-center container">
+    <div class="row parent ">
+      <button type="button" (click)="filterPipe('')" class="btn btn-primary col-3" type="button">All</button>
+      <button type="button" (click)="filterPipe('CREDIT')" class="btn btn-primary col-3 " type="button">Credit
+        Only</button>
+      <button type=button (click)="filterPipe('DEBIT')" class="btn btn-primary col-3 " type="button">Debit Only</button>
+    </div>
+  </div>
+  <br>
+  <table class="table table-primary table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Sl.no</th>
+        <th scope="col">Type</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of transactions|filter : searchString :'type' ;let j=index">
+        <td>{{j+1}}</td>
+        <td>{{i.type}}</td>
+        <td>{{i.amount}}</td>
+        <td>{{i.date}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+  <div class="text-center container">
+    <div class="row ">
+      <a href="/home" class="btn btn-primary  col-3" type="button">Go Back</a>
+      <button type="button" (click)="exportPdf()" class="btn btn-primary col-3 " style="margin-left: 60px;" type="button">Export As PDF</button>
+    </div>
+  </div>
+
+
+
+
+</div>

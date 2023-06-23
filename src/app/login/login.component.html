@@ -3,17 +3,27 @@
 <div class="text-center row">
     <div class="container text-center bg-light border bg-dark col-5 mt-5 ms- ">
         <h1 class="text-white mt-2 mb-2">ABC Bank(Login)</h1>
-        
-    
-        <form action="">
-            <input [(ngModel)]="acno" id="u1"  type="text" name="uname" placeholder="Enter acc no" class="form-control mt-2  p-2 ">
-            <input [(ngModel)]="psw" id="p1" type="password" name="password" placeholder="Enter Password" class="form-control mt-2 p-2">
-            <button (click)="login()" type="submit"  class="btn btn-light w-50 p-2 mt-4 mb-3">Login</button><br>
-            <p style="color: white;">Don't have an account ? <a routerLink="register" style="text-decoration: none;color: bisque;">Create Account</a> </p>   
+
+
+        <form [formGroup]="loginForm" action="">
+            <input formControlName="acno" id="u1" type="text" name="uname" placeholder="Enter acc no"
+                class="form-control mt-2  p-2 ">
+            <div *ngIf="loginForm.get('acno')?.errors &&loginForm.get('acno')?.touched">
+                <p class="text-white">please include numbers only</p>
+            </div>
+            <input formControlName="psw" id="p1" type="password" name="password" placeholder="Enter Password"
+                class="form-control mt-2 p-2">
+                <div *ngIf="loginForm.get('psw')?.errors &&loginForm.get('psw')?.touched">
+                    <p class="text-white">please include numbers and charecters only</p>
+                </div>
+            <button (click)="login()" type="submit" class="btn btn-light w-50 p-2 mt-4 mb-3">Login</button><br>
+            <p style="color: white;">Don't have an account ? <a routerLink="register"
+                    style="text-decoration: none;color: bisque;">Create Account</a> </p>
         </form>
-    
+
     </div>
     <div class="col-6 mt-5">
-        <img class="" style="width: 550px; border-radius: 50px;" src="https://i.postimg.cc/GtTxt7q7/bank-building.webp" alt="">
+        <img class="" style="width: 550px; border-radius: 50px;" src="https://i.postimg.cc/GtTxt7q7/bank-building.webp"
+            alt="">
     </div>
 </div>
